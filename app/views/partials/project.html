@@ -1,0 +1,58 @@
+<div class="panel-heading">
+  <div class="row">
+    <div class='col-xs-1 text-center'>
+      <span class='glyphicon glyphicon-list-alt' />
+    </div>
+
+    <div class='col-xs-8'>
+      <div class='input-group' ng-if="project_ctrl.project.isEditable">
+        <input type="text" class="form-control" ng-model="project_ctrl.project.newTitle">
+        <div class='input-group-btn'>
+          <button class='btn btn-success' ng-click="project_ctrl.update()">
+            <span class='glyphicon glyphicon-ok' />
+          </button>
+
+          <button class='btn btn-danger' ng-click="project_ctrl.cancel()">
+            <span class='glyphicon glyphicon-remove' />
+          </button>
+        </div>
+      </div>
+      <span class="panel-title" ng-if="!project_ctrl.project.isEditable">
+        {{project_ctrl.project.title}}
+      </span>
+    </div>
+
+    <div class='col-xs-3 text-right'>
+      <button class='btn btn-default' ng-if="!project_ctrl.project.isEditable" ng-click="project_ctrl.edit()">
+        <span class='glyphicon glyphicon-pencil' />
+      </button>
+      <button class='btn btn-default' ng-click="projects_ctrl.delete(project_ctrl.project)">
+        <span class='glyphicon glyphicon-trash' />
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="panel-body" ng-controller="TasksCtrl as tasks_ctrl" ng-init="tasks_ctrl.setTasks(project_ctrl.project.tasks)">
+  <div class='input-group add-task-container'>
+    <input type="text" ng-model="tasks_ctrl.newTask.title" class="form-control">
+    <div class='input-group-btn'>
+      <button class='btn btn-success' ng-click="tasks_ctrl.add()">
+        <span>Add task</span>
+      </button>
+    </div>
+  </div>
+
+  <table class="table table-stripped table-hover">
+    <tbody>
+      <tr ng-repeat="task in tasks_ctrl.tasks | orderBy:'position'" ng-controller="TaskCtrl as task_ctrl" ng-init="task_ctrl.setTask(task)" ng-include src="'partials/task.html'" />
+    </tbody>
+  </table>
+</div>
+
+<div class="panel-footer">
+  <div class="text-right">
+    <span>Total: {{project_ctrl.totalTasks()}}</span>
+    <span>Completed: {{project_ctrl.doneTasksCount()}}</span>
+  </div>
+</div>

@@ -11,7 +11,10 @@ export default {
     src: 'app/styles/**/*.scss',
     dest: 'build/css',
     prodSourcemap: false,
-    sassIncludePaths: []
+    sassIncludePaths: [
+      'node_modules/bootstrap-sass/assets/stylesheets',
+      'node_modules/reset-css'
+    ]
   },
 
   scripts: {
@@ -27,7 +30,7 @@ export default {
   },
 
   fonts: {
-    src: ['app/fonts/**/*'],
+    src: ['app/fonts/**/*', 'node_modules/bootstrap-sass/assets/fonts/**/*'],
     dest: 'build/fonts'
   },
 

@@ -1,0 +1,39 @@
+<td>
+  <input type="checkbox" ng-model='task_ctrl.task.isDone'>
+</td>
+
+<td>
+  <div class='input-group' ng-if="task_ctrl.task.isEditable">
+    <input type="text" class="form-control" ng-model="task_ctrl.task.newTitle">
+    <div class='input-group-btn'>
+      <button class='btn btn-success' ng-click="task_ctrl.update()">
+        <span class='glyphicon glyphicon-ok' />
+      </button>
+
+      <button class='btn btn-danger' ng-click="task_ctrl.cancel()">
+        <span class='glyphicon glyphicon-remove' />
+      </button>
+    </div>
+  </div>
+
+  <span ng-class="{'text-muted': task_ctrl.task.isDone}" ng-if="!task_ctrl.task.isEditable">
+    {{task_ctrl.task.title}}
+  </span>
+</td>
+
+<td class='text-right'>
+  <div class='actions btn-group'>
+    <button class='btn btn-default btn-sm' ng-click="tasks_ctrl.moveUp(task)">
+      <span class='glyphicon glyphicon-triangle-top' />
+    </button>
+    <button class='btn btn-default btn-sm' ng-click="tasks_ctrl.moveDown(task)">
+      <span class='glyphicon glyphicon-triangle-bottom' />
+    </button>
+    <button class='btn btn-default btn-sm' ng-if="!task_ctrl.task.isEditable" ng-click="task_ctrl.edit()">
+      <span class='glyphicon glyphicon-pencil' />
+    </button>
+    <button class='btn btn-default btn-sm' ng-click="tasks_ctrl.delete(task)">
+      <span class='glyphicon glyphicon-trash' />
+    </button>
+  </div>
+</td>

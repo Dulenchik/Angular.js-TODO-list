@@ -1,0 +1,14 @@
+<div class="container">
+  <ul class="row">
+    <li class="col-xs-8 col-xs-offset-2 project-wrapper" ng-repeat="project in projects_ctrl.projects">
+      <div class="panel" ng-controller="ProjectCtrl as project_ctrl" ng-init="project_ctrl.setProject(project)" ng-class="project_ctrl.isProjectDone(project) ? 'panel-success' : 'panel-primary'" ng-include src="'partials/project.html'" />
+    </li>
+  </ul>
+</div>
+
+<div class='text-center'>
+  <button class='btn btn-primary add-project btn-lg' ng-click="projects_ctrl.add()">
+    <i class='glyphicon glyphicon-plus'></i>
+    Add Project
+  </button>
+</div>
